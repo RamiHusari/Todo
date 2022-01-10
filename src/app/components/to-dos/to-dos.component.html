@@ -1,0 +1,28 @@
+<div >
+    <div class="ui fluid action input" >
+<!-- neue Aufgaben durch Taste Enter oder Bei klick Taste 'Ein Task hinzufügen' hinzufügen-->
+        <input (keyup.enter)="addNewTask()"  type="text" name="inputTask" placeholder="Bitte Schreiben Sie Ihren Task.." [(ngModel)]="inputTask">
+        <button (click)="addNewTask()"  class="ui inverted red button">Ein Task hinzufügen</button>
+    </div>
+<!-- der hinzufügte Task bekommen oder sehen  -->
+    <div  *ngFor="let task of tasks; let i = index">
+       <!-- Bei klick eine Aufgabe wird sie durchstrichen -->
+      <div (click)="toggleDone(i)">
+          <div *ngIf="task.completed == true" >
+              <div style="text-decoration: line-through; font-size: large;" class="ui label" >
+               {{i+1}} - {{task.task}} 
+              </div>
+               <button class="ui inverted red button" style="float: right;"  (click)="deleteTask(i)">Löschen <i class="trash alternate icon ;" ></i></button>
+          </div>
+          <div *ngIf="task.completed == false">
+            <div style="font-size: large;" class="ui label" >
+                {{i+1}} - {{task.task}}  
+            </div>
+            <!-- Bei Klick Taste Löschen die Aufgabe wird gelöscht  -->
+            <button class="ui inverted red button" style="float: right;"  (click)="deleteTask(i)">Löschen <i class="trash alternate icon ;" ></i></button>
+        </div>
+    </div> 
+
+    </div>
+
+</div>
